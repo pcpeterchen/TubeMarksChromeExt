@@ -4,12 +4,14 @@
   "name": "Peter's Plug-in",
   "description": "A test-extension for Peter.",
   "version": "1.0",
-
-  "browser_action": {
-   "default_icon": "icon.png",
-   "default_popup": "popup.html"
-  },
+  "content_scripts":[
+    {
+      "matches": ["*://www.youtube.com/*"],
+      "js": ["myscript.js"]
+    }
+  ],
   "permissions": [
-   "activeTab"
+    "storage",
+    "activeTab"
    ]
 }

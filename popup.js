@@ -1,9 +1,14 @@
-document.addEventListener('DOMContentLoaded', function() {
-  var checkPageButton = document.getElementById('checkPage');
-  checkPageButton.addEventListener('click', function() {
+function renderStatus(statusText) {
+  document.getElementById('status').textContent = statusText;
+}
 
-    chrome.tabs.update({
-     url: "http://8tracks.com/pcpetepete/meme-music"
-   });
-  }, false);
-}, false);
+  document.addEventListener('DOMContentLoaded', function() {
+    renderStatus('rekt');
+    var button = document.getElementById('button');
+    button.addEventListener('click', function() {
+      chrome.tabs.executeScript({
+        file: 'myscript.js'
+      });
+      renderStatus('memes');
+    });
+  });
