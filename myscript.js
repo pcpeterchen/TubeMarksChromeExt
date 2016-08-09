@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (Notification.permission !== "granted")
     Notification.requestPermission();
 });
-
+// Chrome Desktop Notification
 function notifyMe() {
   if (!Notification) {
     alert('Desktop notifications not available in your browser. Try Chromium.'); 
@@ -21,7 +21,7 @@ function notifyMe() {
 
 }
 
-
+//On 's' key, set a new bookmark from the video
 document.body.addEventListener('keyup', function(e) {
 	if (e.keyCode == 83) {
 		var	site = document.URL;
@@ -44,6 +44,7 @@ document.body.addEventListener('keyup', function(e) {
 	}
 });
 
+// On 'g' key, retrieve all bookmarks.  Display on the page, under the video. 
 document.body.addEventListener('keyup', function(e) {
 	if (e.keyCode == 71) {
 		var	site = document.URL;
@@ -71,6 +72,7 @@ document.body.addEventListener('keyup', function(e) {
 	}
 });
 
+//On 'e' key, remove all bookmarks.
 document.body.addEventListener('keyup', function(e) {
 	if (e.keyCode == 69) {
 		var	site = document.URL;

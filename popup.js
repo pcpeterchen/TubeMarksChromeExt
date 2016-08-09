@@ -1,3 +1,4 @@
+// Currently unused.  Test of button push. 
 function renderStatus(statusText) {
   document.getElementById('status').textContent = statusText;
 }
