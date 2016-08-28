@@ -3,23 +3,6 @@ document.addEventListener('DOMContentLoaded', function () {
   if (Notification.permission !== "granted")
     Notification.requestPermission();
 });
-// Chrome Desktop Notification
-function notifyMe() {
-  if (!Notification) {
-    alert('Desktop notifications not available in your browser. Try Chromium.'); 
-    return;
-  }
-
-  if (Notification.permission !== "granted")
-    Notification.requestPermission();
-  else {
-    var notification = new Notification('Notification title', {
-      icon: 'https://yt3.ggpht.com/-p-O21kZZDPs/AAAAAAAAAAI/AAAAAAAAAAA/an-88_jZWFI/s48-c-k-no-rj-c0xffffff/photo.jpg',
-      body: "TubeMarks Erased!",
-    });    
-  }
-
-}
 
 //On 's' key, set a new bookmark from the video
 document.body.addEventListener('keyup', function(e) {
@@ -32,6 +15,7 @@ document.body.addEventListener('keyup', function(e) {
 			timearray.push(time);
 			localStorage.setItem(site, JSON.stringify(timearray));
 			console.log(timearray);
+			display();
 		} 
 		else {
 			timearray = JSON.parse(localStorage.getItem(site));
@@ -40,42 +24,38 @@ document.body.addEventListener('keyup', function(e) {
 				localStorage.setItem(site, JSON.stringify(timearray));
 			}
 			console.log(timearray);
+			display();
 		}
 	}
 });
 
 // On 'g' key, retrieve all bookmarks.  Display on the page, under the video. 
-document.body.addEventListener('keyup', function(e) {
-	if (e.keyCode == 71) {
-		var	site = document.URL;
-		console.log(site);
-		timearray = JSON.parse(localStorage.getItem(site));
-		console.log(timearray);
+function display() {
 
-		var myElem = document.getElementById(site);
-		if (myElem == null) {
-		     //Create Labels
-		     var myDiv = document.createElement("div");
-		     myDiv.setAttribute("id", site);
-		     myDiv.setAttribute("style", "font-weight:normal");
-		     myDiv.setAttribute("cssFloat", "left");
-		     myDiv.innerHTML = timearray;
+	var	site = document.URL;
+	console.log(site);
+	timearray = JSON.parse(localStorage.getItem(site));
+	console.log(timearray);
 
-	          // 'foobar' is the div id, where new fields are to be added
-	          var foo = document.getElementById("watch7-views-info");
+	var myElem = document.getElementById(site);
+	if (myElem == null) {
+		var myDiv = document.createElement("div");
+		myDiv.setAttribute("id", site);
+		myDiv.setAttribute("style", "font-weight:normal");
+		myDiv.setAttribute("cssFloat", "left");
+		myDiv.innerHTML = timearray;
 
-	          //Append the element in page (in span).
-	          foo.appendChild(myDiv);
-	   }
-	   myElem.innerHTML = timearray;
-
-	}
-});
+		var foo = document.getElementById("watch7-views-info");
+		foo.appendChild(myDiv);
+	      }
+	      myElem.innerHTML = timearray;	
+}
+window.onload = display;
 
 //On 'e' key, remove all bookmarks.
 document.body.addEventListener('keyup', function(e) {
 	if (e.keyCode == 69) {
-		var	site = document.URL;
+		var site = document.URL;
 		localStorage.removeItem(site);
 		var myElem = document.getElementById(site);
 		myElem.innerHTML = '';

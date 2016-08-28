@@ -2,11 +2,19 @@
 <html>
   <head>
     <title>Sup Fam</title>
+
     <style>
       body {
-        font-family: "ComicSansMS";
-        font-size: 100%;
+        font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
+        background: url('../img/background.jpg') no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+        -o-background-size: cover;
+        text-shadow: 3px 3px 5px black;
+        color: #fff;
       }
+
       #status {
         /* avoid an excessively wide status text */
         white-space: pre;
@@ -15,11 +23,13 @@
         max-width: 400px;
       }
     </style>
+
     <script src="popup.js"></script>
+
   </head>
   <body>
-    <h1>Sup Bud</h1>
+    <h1>PRESS TO DELETE</h1>
     <div id="status"></div>
-    <button id="button">MMMM!</button>
+    <button id="button">DELETE!</button>
   </body>
 </html>

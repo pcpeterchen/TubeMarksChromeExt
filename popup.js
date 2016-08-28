@@ -4,16 +4,13 @@ function renderStatus(statusText) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  renderStatus('rekt');
+  renderStatus('not deleted');
   var button = document.getElementById('button');
   button.addEventListener('click', function() {
-    chrome.storage.local.clear(function(obj){
-      console.log("cleared");
-    });
-    renderStatus('memes');
-  });
-
-  chrome.tabs.executeScript({
-    file: 'myscript.js'
+        renderStatus('deleted');
+        var site = document.URL;
+        localStorage.removeItem(site);
+        var myElem = document.getElementById(site);
+        myElem.innerHTML = '';
   });
 });
