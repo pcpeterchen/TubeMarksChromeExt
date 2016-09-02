@@ -11,7 +11,7 @@
   "content_scripts":[
     {
       "matches": ["*://www.youtube.com/*"],
-      "js": ["myscript.js"]
+      "js": ["jquery-3.1.0.min.js", "myscript.js"]
     }
   ],
   "permissions": [

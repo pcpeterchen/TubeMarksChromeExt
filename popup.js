@@ -4,10 +4,10 @@ function renderStatus(statusText) {
 }
 
 document.addEventListener('DOMContentLoaded', function() {
-  renderStatus('not deleted');
+  renderStatus('UNACCEPTABLE');
   var button = document.getElementById('button');
   button.addEventListener('click', function() {
-        renderStatus('deleted');
+        renderStatus('ACCEPTABLE');
         var site = document.URL;
         localStorage.removeItem(site);
         var myElem = document.getElementById(site);
