@@ -58,8 +58,8 @@ $("body").on("click",".removeclass", function(e){
 	var index = timearray.indexOf(timepoint);
 	if (index > -1) {
 		timearray.splice(index, 1);
+		console.log(timearray);
 		localStorage.setItem(site, JSON.stringify(timearray));
-		$(this).parent('div').prop("disabled",true);
 		$(this).parent('div').remove();
 	}
 });
@@ -75,17 +75,24 @@ function display() {
 	r.click(function() {
 		buttonAdd();
 	});
-	$("#watch-headline-title").append(r);
-	var site = document.URL;
-	timearray = JSON.parse(localStorage.getItem(site));
-	if (timearray != null) {
-		timearray = timearray.sort(compStr);
-		for (i = 0; i < timearray.length; i++) {
-			if (! $( "#" + timearray[i]).length ) {
-				createButton(timearray[i]);
+	if ($("#watch-headline-title").length ) {
+		$("#watch-headline-title").append(r);
+		var site = document.URL;
+		timearray = JSON.parse(localStorage.getItem(site));
+		if (timearray != null) {
+			timearray = timearray.sort(compStr);
+			for (i = 0; i < timearray.length; i++) {
+				if (! $( "#" + timearray[i]).length ) {
+					createButton(timearray[i]);
+				}
 			}
 		}
 	}	
 }
-window.onload = display();
+
+document.addEventListener("spfdone", display);
+document.addEventListener("DOMContentLoaded", display)
+$( document ).ready(function() {
+    display();
+});
 
