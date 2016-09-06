@@ -19,6 +19,10 @@ function convertTime(d) {
 //When add button is clicked
 function buttonAdd() {
 	var site = document.URL;
+	if (site.includes('#')) {
+		site = site.substring(0, site.length - 1);
+	}
+	console.log("add: " + site);
 	time = $('video').get(0).currentTime;
 	time = parseInt(time, 10);
 	x = localStorage.getItem(site);
@@ -52,14 +56,19 @@ function createButton(timepoint) {
 
 //remove button function
 $("body").on("click",".removeclass", function(e){ 
+	e.preventDefault();
 	var site = document.URL;
+	if (site.includes('#')) {
+		site = site.substring(0, site.length - 1);
+	}
+	$(this).parent('div').children().prop("disabled", true);
 	timearray = JSON.parse(localStorage.getItem(site));
 	timepoint = parseInt($(this).parent('div').attr("id"), 10);
 	var index = timearray.indexOf(timepoint);
 	if (index > -1) {
 		timearray.splice(index, 1);
-		console.log(timearray);
 		localStorage.setItem(site, JSON.stringify(timearray));
+		console.log(JSON.parse(localStorage.getItem(site)));
 		$(this).parent('div').remove();
 	}
 });
@@ -78,6 +87,9 @@ function display() {
 	if ($("#watch-headline-title").length ) {
 		$("#watch-headline-title").append(r);
 		var site = document.URL;
+		if (site.includes('#')) {
+			site = site.substring(0, site.length - 1);
+		}
 		timearray = JSON.parse(localStorage.getItem(site));
 		if (timearray != null) {
 			timearray = timearray.sort(compStr);
