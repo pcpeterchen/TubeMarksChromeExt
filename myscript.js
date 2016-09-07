@@ -47,11 +47,11 @@ function createButton(timepoint) {
 	var dispTime = convertTime(parseInt(timepoint, 10));
 	var r = $('<div id='+ timepoint + ' style="float: left"> <input type="button"  ID='+ timepoint + ' value=' + dispTime + '> <a href="#" class="removeclass">Remove</a> </div>');
 	timepoint = parseInt(timepoint, 10);
-	r.click(function() {
+	r.find("input").click(function() {
 		$('video').get(0).currentTime = timepoint;
 	});
 
-	$("#watch-headline-title").append(r);
+	$("#watch7-headline").append(r);
 }
 
 //remove button function
@@ -68,7 +68,6 @@ $("body").on("click",".removeclass", function(e){
 	if (index > -1) {
 		timearray.splice(index, 1);
 		localStorage.setItem(site, JSON.stringify(timearray));
-		console.log(JSON.parse(localStorage.getItem(site)));
 		$(this).parent('div').remove();
 	}
 });
@@ -84,8 +83,8 @@ function display() {
 	r.click(function() {
 		buttonAdd();
 	});
-	if ($("#watch-headline-title").length ) {
-		$("#watch-headline-title").append(r);
+	if ($("#watch7-headline").length ) {
+		$("#watch7-headline").append(r);
 		var site = document.URL;
 		if (site.includes('#')) {
 			site = site.substring(0, site.length - 1);
