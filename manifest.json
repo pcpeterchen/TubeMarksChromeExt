@@ -3,12 +3,11 @@
 
   "name": "TubeMarks for Youtube",
   "description": "A fun extension",
-  "version": "1.2",
+  "version": "1.4",
   "browser_action": {
-    "default_icon": "img/icon16.png",
-    "default_popup": "popup.html"
+    "default_icon": "img/icon16.ico"
   },
-  "icons": { "16": "img/icon16.png",
+  "icons": { "16": "img/icon16.ico",
            "48": "img/icon48.png",
           "128": "img/icon128.png" },
   "content_scripts":[
